@@ -9,9 +9,11 @@ node {
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
-         * docker build on the command line */
+         * docker build on the command line         app = docker.build("geekcrowds/hellonode") */
+        app.inside {
+            sh 'sudo docker build . -t geekcrowds-hellonode:1'
+        }
 
-        app = docker.build("geekcrowds/hellonode")
     }
 
     stage('Test image') {
